@@ -1,7 +1,7 @@
 import gsap from "gsap";
-import type { GsapTarget } from "../types/animationNavbarTypes";
+import type { GsapTargetNavbar } from "../types/animationNavbarTypes";
 
-export const animateNavbar = (target: GsapTarget) => {
+export const animateNavbar = (target: GsapTargetNavbar) => {
 	if (!target) return;
 
 	gsap.fromTo(

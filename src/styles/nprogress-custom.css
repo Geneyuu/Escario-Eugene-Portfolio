@@ -1,5 +1,5 @@
 #nprogress .bar {
-	background: #490f8b;
+	background: #f0694b;
 	height: 5px;
 	width: 100%;
 }
@@ -9,5 +9,5 @@
 }
 
 body.nprogress-busy {
-	background-color: #490f8b;
+	background-color: #f0694b;
 }

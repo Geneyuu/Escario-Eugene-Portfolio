@@ -1,85 +1,82 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { FaGithub, FaCog } from "react-icons/fa";
-import { useEffect, useRef } from "react";
-import { animateNavbar } from "../animations/animateNavbar";
-import { animatePage } from "../animations/animatePage";
+import { NavLink, useLocation } from 'react-router-dom';
+import { FaGithub } from 'react-icons/fa';
+import { IoSettingsOutline } from 'react-icons/io5';
+
+import { useEffect, useRef } from 'react';
+import { animateNavbar } from '../animations/animateNavbar';
+import { animatePage } from '../animations/animatePage';
 
 export default function Navbar() {
-	const navRef = useRef<HTMLDivElement>(null);
-	const location = useLocation();
+    const navRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
 
-	useEffect(() => {
-		animateNavbar(navRef.current);
-	}, [location.pathname]);
+    useEffect(() => {
+        animateNavbar(navRef.current);
+    }, [location.pathname]);
 
-	console.log(location.pathname);
+    const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+        `text-sm font-medium px-5 py-0 rounded transition-colors duration-300 cursor-pointer ${
+            isActive
+                ? 'bg-[#f0694b] border border-black/10 text-white'
+                : 'text-black hover:bg-gray-300 hover:text-black'
+        }`;
 
-	const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-		`text-sm font-medium px-3 py-2 rounded transition-colors duration-300 cursor-pointer ${
-			isActive
-				? "bg-gray-700/40 border-[1px] border-white/10 text-white"
-				: "text-white hover:bg-gray-700/40 hover:text-white"
-		}`;
+    return (
+        <div className='flex justify-center norwester border-b-black/10' ref={navRef}>
+            <nav
+                className='
+				sticky top-0 z-50
+				bg-white
+				backdrop-blur-[4px] 
+				border-b border-black/20 
+				flex justify-between items-center py-6 px-70 w-full text-black'
+            >
+                {/* Logo + Nav links left */}
+                <div className='flex items-center gap-10'>
+                    <div className='font-bold text-2xl cursor-pointer'>
+                        <h1 className='text-[35px] tracking-[-2px]'>&lt;Escreates/&gt;</h1>
+                    </div>
 
-	return (
-		<div
-			className="flex justify-center norwester border-b-white/10"
-			ref={navRef}
-		>
-			<nav
-				className="
-					bg-gray-700/15
-					backdrop-blur-[4px] 
-					border-b border-white/20 
-					flex justify-between items-center py-6 px-50 w-full text-white
-				"
-			>
-				{/* Logo + Nav links left */}
-				<div className="flex items-center gap-10">
-					<div className="text-white font-bold text-2xl cursor-pointer">
-						<h1 className="text-[30px]">EsCreates.</h1>
-					</div>
+                    <div className='flex gap-1 items-center'>
+                        <NavLink to='/' className={navLinkClass}>
+                            <h1 className='h1'>HOME</h1>
+                        </NavLink>
+                        <NavLink to='/about-me' className={navLinkClass}>
+                            <h1 className='h1'>ABOUT</h1>
+                        </NavLink>
+                        <NavLink to='/projects' className={navLinkClass}>
+                            <h1 className='h1'>PROJECTS</h1>
+                        </NavLink>
+                    </div>
+                </div>
 
-					<div className="flex gap-3 items-center">
-						<NavLink to="/" className={navLinkClass}>
-							<h1 className="h1">Home</h1>
-						</NavLink>
-						<NavLink to="/about-me" className={navLinkClass}>
-							<h1 className="h1">About</h1>
-						</NavLink>
-						<NavLink to="/projects" className={navLinkClass}>
-							<h1 className="h1">Projects</h1>
-						</NavLink>
-					</div>
-				</div>
+                {/* Icons right */}
+                <div className='flex gap-4 text-black text-lg cursor-pointer items-center'>
+                    <NavLink to='/lets-chat'>
+                        <h1 className='bg-[#0d0d0d] text-white mr-10 px-6 py-2 rounded cursor-pointer hover:bg-[#f0694b] transition active:scale-95'>
+                            Let's Connect!
+                        </h1>
+                    </NavLink>
 
-				{/* Icons right */}
-				<div className="flex gap-4 text-white text-lg cursor-pointer items-center">
-					<NavLink to="/lets-chat">
-						<h1 className="bg-white mr-10 px-6 py-2 text-black rounded cursor-pointer hover:bg-white/90 transition active:scale-95">
-							Let's Chat
-						</h1>
-					</NavLink>
-
-					<a
-						href="https://github.com/Geneyuu"
-						target="_blank"
-						rel="noreferrer"
-						aria-label="GitHub"
-						className="hover:text-gray-400 transition-colors flex items-center gap-2 mr-5"
-					>
-						<FaGithub />
-						Github
-					</a>
-					<a
-						href="/settings"
-						aria-label="Settings"
-						className="hover:text-gray-400 transition-colors"
-					>
-						<FaCog />
-					</a>
-				</div>
-			</nav>
-		</div>
-	);
+                    <a
+                        href='https://github.com/Geneyuu'
+                        target='_blank'
+                        rel='noreferrer'
+                        aria-label='GitHub'
+                        className='hover:text-gray-600 transition-colors flex items-center gap-2 mr-5'
+                    >
+                        <FaGithub />
+                        Geneyuu
+                    </a>
+                    <a
+                        href='/settings'
+                        aria-label='Settings'
+                        className='hover:text-gray-600 transition-colors bg-gray-200 rounded p-2'
+                    >
+                        <IoSettingsOutline size={20} />
+                    </a>
+                </div>
+            </nav>
+        </div>
+    );
 }

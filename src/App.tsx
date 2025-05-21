@@ -14,11 +14,12 @@ function ProgressBar() {
 
 		const timer = setTimeout(() => {
 			NProgress.done();
-		}, 500);
+		}, 200);
 
 		return () => clearTimeout(timer);
-	}, [location]);
+	}, [location.pathname]);
 
+	console.log(location.pathname);
 	return null;
 }
 
@@ -27,7 +28,7 @@ export default function App() {
 		<BrowserRouter>
 			<div className="relative z-0 min-h-screen w-full">
 				<ProgressBar />
-				<ParticleBackground />
+				{/* <ParticleBackground /> */}
 				<AppRoutes />
 			</div>
 		</BrowserRouter>

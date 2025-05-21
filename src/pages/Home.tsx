@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import Timeline from '../components/timeline';
 
 const Home = () => {
-	return (
-		<div className="text-white text-3xl p-8">Welcome to My Portfolio</div>
-	);
+    /* background: #0d0d0d; */
+    return <div className='text-white text-3xl bg-black'>Welcome to My Portfolio</div>;
 };
 
 export default Home;

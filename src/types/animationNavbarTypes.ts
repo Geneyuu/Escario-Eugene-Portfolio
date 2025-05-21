@@ -1,1 +1,1 @@
-export type GsapTarget = HTMLElement | null;
+export type GsapTargetNavbar = HTMLElement | null;
