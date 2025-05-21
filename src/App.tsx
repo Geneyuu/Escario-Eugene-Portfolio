@@ -1,7 +1,11 @@
-import React from "react";
+import { useState } from "react";
+import ParticleBackground from "./components/ParticleBackground";
 
-const App = () => {
-	return <div className="">App</div>;
-};
-
-export default App;
+export default function App() {
+	return (
+		<div className="z-0 min-h-screen flex items-center justify-center">
+			<ParticleBackground />
+			<h1 className="text-white text-5xl">In Infinity And Beyond</h1>
+		</div>
+	);
+}
