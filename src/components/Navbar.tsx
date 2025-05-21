@@ -2,6 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { FaGithub, FaCog } from "react-icons/fa";
 import { useEffect, useRef } from "react";
 import { animateNavbar } from "../animations/animateNavbar";
+import { animatePage } from "../animations/animatePage";
 
 export default function Navbar() {
 	const navRef = useRef<HTMLDivElement>(null);

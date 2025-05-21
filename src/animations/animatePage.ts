@@ -1,12 +1,12 @@
 import gsap from "gsap";
-import type { GsapTarget } from "../types/animationNavbarTypes";
+import type { GsapTargetPage } from "../types/animatePageType";
 
-export const animateNavbar = (target: GsapTarget) => {
+export const animatePage = (target: GsapTargetPage) => {
 	if (!target) return;
 
 	gsap.fromTo(
 		target,
-		{ y: -100, opacity: 0 },
+		{ y: 30, opacity: 0 },
 		{
 			y: 0,
 			opacity: 1,

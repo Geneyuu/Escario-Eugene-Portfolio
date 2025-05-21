@@ -12,13 +12,13 @@ export default function ParticleBackground() {
 			0.1,
 			1000
 		);
-		camera.position.z = 5;
+		camera.position.z = 2;
 		const renderer = new THREE.WebGLRenderer({ alpha: true });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.setPixelRatio(window.devicePixelRatio);
 		containerRef.current?.appendChild(renderer.domElement);
 
-		const particleCount = 3000; // medyo dami pero maliit kaya okay lang
+		const particleCount = 1500; // medyo dami pero maliit kaya okay lang
 		const positions = new Float32Array(particleCount * 3);
 		const velocities = new Float32Array(particleCount);
 
@@ -84,7 +84,7 @@ export default function ParticleBackground() {
 	}, []);
 
 	function createSoftCircleTexture() {
-		const size = 64;
+		const size = 60;
 		const canvas = document.createElement("canvas");
 		canvas.width = size;
 		canvas.height = size;

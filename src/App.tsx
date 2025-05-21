@@ -1,7 +1,6 @@
 import { BrowserRouter, useLocation } from "react-router-dom";
 import ParticleBackground from "./components/ParticleBackground";
 import { AppRoutes } from "./router";
-import Navbar from "./components/Navbar";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./styles/nprogress-custom.css";
