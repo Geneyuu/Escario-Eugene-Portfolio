@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import ParticleBackground from "./components/ParticleBackground";
+import { AppRoutes } from "./router";
+import Navbar from "./components/Navbar";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import "./styles/nprogress-custom.css";
+import { useEffect } from "react";
+
+function ProgressBar() {
+	const location = useLocation();
+
+	useEffect(() => {
+		NProgress.start();
+
+		const timer = setTimeout(() => {
+			NProgress.done();
+		}, 500);
+
+		return () => clearTimeout(timer);
+	}, [location]);
+
+	return null;
+}
 
 export default function App() {
 	return (
-		<div className="z-0 min-h-screen flex items-center justify-center">
-			<ParticleBackground />
-			<h1 className="text-white text-5xl">In Infinity And Beyond</h1>
-		</div>
+		<BrowserRouter>
+			<div className="relative z-0 min-h-screen w-full">
+				<ProgressBar />
+				<ParticleBackground />
+				<AppRoutes />
+			</div>
+		</BrowserRouter>
 	);
 }

@@ -6,12 +6,18 @@
 	font-family: "Anton", sans-serif;
 	font-weight: 400;
 	font-style: normal;
+	font-size: 1.75rem; /* 28px */
+	line-height: 2rem; /* 32px */
+	letter-spacing: 0.05em;
 }
 
 html {
 	font-family: "Anton", sans-serif;
 	font-weight: 400;
 	font-style: normal;
+	font-size: 16px; /* Base font size */
+	line-height: 1.5;
+	color: white;
 }
 
 @font-face {
@@ -30,16 +36,60 @@ html {
 
 .gilroy {
 	font-family: "Gilroy", sans-serif;
+	font-size: 16px; /* 16px */
+	line-height: 1.5;
+	font-weight: 00;
 }
 
 .norwester {
 	font-family: "Norwester", sans-serif;
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.6;
 }
 
 body {
 	width: 100vw;
 	height: 100vh;
 	margin: 0;
-	background: black;
+	background: #0d0d0d;
 	overflow: hidden;
+	font-size: 1rem; /* Default body font size */
+	line-height: 1.5;
+	font-weight: 300;
+	color: white;
+}
+
+/* Additional utility classes for font weights */
+.font-light {
+	font-weight: 300;
+}
+
+.font-regular {
+	font-weight: 400;
+}
+
+.font-medium {
+	font-weight: 500;
+}
+
+.font-bold {
+	font-weight: 700;
+}
+
+.h1 {
+	font-size: 16px; /* 36px */
+	font-weight: 200;
+	color: "#333333";
+}
+
+.h2 {
+	font-size: 1.875rem; /* 30px */
+	line-height: 2.25rem; /* 36px */
+	font-weight: 600;
+}
+
+.h3 {
+	font-size: 1.5rem; /* 24px */
+	line-height: 2rem; /* 32px */
+	font-weight: 500;
 }
