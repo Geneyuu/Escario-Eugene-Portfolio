@@ -1,82 +1,61 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import { FaGithub } from 'react-icons/fa';
-import { IoSettingsOutline } from 'react-icons/io5';
-
 import { useEffect, useRef } from 'react';
-import { animateNavbar } from '../animations/animateNavbar';
-import { animatePage } from '../animations/animatePage';
+import { NavLink, useLocation } from 'react-router-dom';
+import logo from '../assets/images/logo.png';
 
 export default function Navbar() {
     const navRef = useRef<HTMLDivElement>(null);
-    const location = useLocation();
+    const indicatorRef = useRef<HTMLDivElement>(null);
+    const { pathname } = useLocation();
 
     useEffect(() => {
-        animateNavbar(navRef.current);
-    }, [location.pathname]);
+        const updateIndicator = () => {
+            const activeLink = navRef.current?.querySelector('.active') as HTMLElement | null;
+            console.log(activeLink);
+
+            if (activeLink && indicatorRef.current) {
+                indicatorRef.current.style.left = `${activeLink.offsetLeft}px`;
+                indicatorRef.current.style.width = `${activeLink.offsetWidth}px`;
+            }
+        };
+
+        updateIndicator();
+        window.addEventListener('resize', updateIndicator);
+        return () => window.removeEventListener('resize', updateIndicator);
+    }, [pathname]);
 
     const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `text-sm font-medium px-5 py-0 rounded transition-colors duration-300 cursor-pointer ${
-            isActive
-                ? 'bg-[#f0694b] border border-black/10 text-white'
-                : 'text-black hover:bg-gray-300 hover:text-black'
+        `relative z-10 px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${
+            isActive ? 'text-gray-800 transition-all duration-800 active' : 'text-white hover:text-white'
         }`;
 
     return (
-        <div className='flex justify-center norwester border-b-black/10' ref={navRef}>
-            <nav
-                className='
-				sticky top-0 z-50
-				bg-white
-				backdrop-blur-[4px] 
-				border-b border-black/20 
-				flex justify-between items-center py-6 px-70 w-full text-black'
-            >
-                {/* Logo + Nav links left */}
-                <div className='flex items-center gap-10'>
-                    <div className='font-bold text-2xl cursor-pointer'>
-                        <h1 className='text-[35px] tracking-[-2px]'>&lt;Escreates/&gt;</h1>
-                    </div>
+        <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-full max-w-[1280px] px-4">
+            {/* LEFT: Logo */}
+            <NavLink to="/">
+                <img src={logo} alt="Logo" className="object-contain h-15 " />
+            </NavLink>
 
-                    <div className='flex gap-1 items-center'>
-                        <NavLink to='/' className={navLinkClass}>
-                            <h1 className='h1'>HOME</h1>
-                        </NavLink>
-                        <NavLink to='/about-me' className={navLinkClass}>
-                            <h1 className='h1'>ABOUT</h1>
-                        </NavLink>
-                        <NavLink to='/projects' className={navLinkClass}>
-                            <h1 className='h1'>PROJECTS</h1>
-                        </NavLink>
-                    </div>
-                </div>
+            {/* CENTER: Nav Links */}
+            <div ref={navRef} className="relative flex gap-5 px-2 py-[7px] bg-white/15 rounded-xl border border-white/20 shadow-inner overflow-hidden backdrop-blur-md ">
+                {/* Sliding Indicator */}
+                <div ref={indicatorRef} className="absolute top-2 bottom-2 bg-white rounded-md transition-all duration-600 z-0" />
 
-                {/* Icons right */}
-                <div className='flex gap-4 text-black text-lg cursor-pointer items-center'>
-                    <NavLink to='/lets-chat'>
-                        <h1 className='bg-[#0d0d0d] text-white mr-10 px-6 py-2 rounded cursor-pointer hover:bg-[#f0694b] transition active:scale-95'>
-                            Let's Connect!
-                        </h1>
-                    </NavLink>
+                <NavLink to="/" className={navLinkClass}>
+                    Home
+                </NavLink>
+                <NavLink to="/about-me" className={navLinkClass}>
+                    About Me
+                </NavLink>
+                <NavLink to="/projects" className={navLinkClass}>
+                    Projects
+                </NavLink>
+                <NavLink to="/lets-chat" className={navLinkClass}>
+                    Contact
+                </NavLink>
+            </div>
 
-                    <a
-                        href='https://github.com/Geneyuu'
-                        target='_blank'
-                        rel='noreferrer'
-                        aria-label='GitHub'
-                        className='hover:text-gray-600 transition-colors flex items-center gap-2 mr-5'
-                    >
-                        <FaGithub />
-                        Geneyuu
-                    </a>
-                    <a
-                        href='/settings'
-                        aria-label='Settings'
-                        className='hover:text-gray-600 transition-colors bg-gray-200 rounded p-2'
-                    >
-                        <IoSettingsOutline size={20} />
-                    </a>
-                </div>
-            </nav>
-        </div>
+            {/* RIGHT: Link or Button */}
+            <div className="text-white text-sm">Links</div>
+        </nav>
     );
 }

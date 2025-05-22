@@ -1,17 +1,17 @@
-import gsap from "gsap";
-import type { GsapTargetNavbar } from "../types/animationNavbarTypes";
+import gsap from 'gsap';
+import type { GsapTargetNavbar } from '../types/animationNavbarTypes';
 
 export const animateNavbar = (target: GsapTargetNavbar) => {
-	if (!target) return;
+    if (!target) return;
 
-	gsap.fromTo(
-		target,
-		{ y: -100, opacity: 0 },
-		{
-			y: 0,
-			opacity: 1,
-			duration: 0.3,
-			ease: "power2.out",
-		}
-	);
+    gsap.fromTo(
+        target,
+        { y: -100, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: 'back.out(1.7)',
+        }
+    );
 };
