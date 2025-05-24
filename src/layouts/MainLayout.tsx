@@ -16,7 +16,7 @@ export default function MainLayout() {
     return (
         <>
             <Navbar />
-            <div ref={pageRef} className='px-[10rem] py-0'>
+            <div ref={pageRef} className='max-w-screen-xl mx-auto px-5'>
                 <Outlet />
             </div>
         </>

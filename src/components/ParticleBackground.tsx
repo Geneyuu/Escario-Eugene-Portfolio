@@ -40,7 +40,7 @@ export default function ParticleBackground() {
 		const material = new THREE.PointsMaterial({
 			map: texture,
 			size: 0.04, // maliit na bilog
-			transparent: true,
+			transparent: false,
 			alphaTest: 0.01,
 			depthWrite: false,
 			blending: THREE.AdditiveBlending,
@@ -55,9 +55,9 @@ export default function ParticleBackground() {
 			const pos = geometry.attributes.position.array as Float32Array;
 
 			for (let i = 0; i < particleCount; i++) {
-				pos[i * 3 + 2] += velocities[i];
-				if (pos[i * 3 + 2] > 7) {
-					pos[i * 3 + 2] = -7;
+				pos[i * 3] -= velocities[i];
+				if (pos[i * 3] < -7) {
+					pos[i * 3] = 7;
 				}
 			}
 

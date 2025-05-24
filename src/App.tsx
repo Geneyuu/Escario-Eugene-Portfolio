@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import './styles/nprogress-custom.css';
 import { useEffect } from 'react';
+import ParticleBackground from './components/ParticleBackground';
 
 function ProgressBar() {
     const location = useLocation();
@@ -25,9 +26,9 @@ function ProgressBar() {
 export default function App() {
     return (
         <BrowserRouter>
-            <div className="relative z-0 min-h-screen w-full">
+            <div className='relative z-0 min-h-screen w-full'>
                 <ProgressBar />
-                {/* <ParticleBackground /> */}
+                <ParticleBackground />
                 <AppRoutes />
             </div>
         </BrowserRouter>
